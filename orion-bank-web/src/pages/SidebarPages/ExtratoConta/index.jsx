@@ -6,7 +6,8 @@ import pageExtrato from "../../../assets/img/pageExtrato.svg";
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import "./styles.css";
-import FileSaver, { saveAs } from "file-saver";
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 
 const ExtratoConta = () => {
@@ -29,27 +30,24 @@ const ExtratoConta = () => {
         if (extrato !== undefined)
             setExtrato(extrato);
     };
-
-    const extratoPDF = async () => {
-        debugger
-
-        try {
-            const request = {
-                codigoConta: user.codigo,
-                dataInicio: dtInicio,
-                dataFim: dtFim
-            }
-
-            const pdfContent = await exportarPdf(request);
-
-            const blob = new Blob([pdfContent], { type: 'application/pdf' });
+    const exportarExtrato = () => {
+        const input = document.getElementById('testeTabela');
+        
+    
+        html2canvas(input).then((canvas) => {
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const imgData = canvas.toDataURL('image/png');
+            const imgWidth = 190; 
+            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+            const marginLeft = 10; 
+            const marginTop = 10; 
           
-
-            FileSaver.saveAs(blob, 'extrato.pdf')
-
-        } catch (error) {
-            console.error(error);
-        }
+            pdf.setDrawColor(0); 
+            pdf.setLineWidth(1); 
+            pdf.rect(marginLeft, marginTop, imgWidth, imgHeight); 
+            pdf.addImage(imgData, 'PNG', marginLeft + 1, marginTop + 1, imgWidth - 2, imgHeight - 2); 
+            pdf.save('Extrato.pdf');
+        });
     };
 
     function formatarData(data) {
@@ -128,11 +126,11 @@ const ExtratoConta = () => {
                     </div>
 
                     <div>
-                        <Button variant="success" as="input" type="submit" value="Exportar" className="estilo-botao" onClick={extratoPDF} />
+                        <Button variant="success" as="input" type="submit" value="Exportar" className="estilo-botao" onClick={exportarExtrato} />
                     </div>
                 </div>
 
-                <div className="table-solicitar">
+                <div className="table-solicitar" id="testeTabela"> 
 
                     <Table striped bordered hover responsive>
                         <thead>
