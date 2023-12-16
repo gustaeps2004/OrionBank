@@ -6,12 +6,14 @@ import { connection } from "../../context/ConnectionString";
 export class ExtratoRepository implements IExtratoRepository {
 
     async ObterMovimentacao(codigoConta: string, dataInicio: Date, dataFim: Date): Promise<Array<ExtratoMovimentoRawQuery>> {
-        
+        const strDataInicio = `${dataInicio} 02:00:00`
+        const strDataFim = `${dataFim} 21:59:59`
+
         const parametros = [
             codigoConta,
             codigoConta,
-            dataInicio,
-            dataFim
+            strDataInicio,
+            strDataFim
         ]
 
         const sql = `SELECT
@@ -48,5 +50,5 @@ export class ExtratoRepository implements IExtratoRepository {
 
         return movimento[0] as Array<ExtratoMovimentoRawQuery>
 
-    }    
+    }
 }

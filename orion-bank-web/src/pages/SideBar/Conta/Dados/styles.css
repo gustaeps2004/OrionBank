@@ -1,0 +1,51 @@
+.container-dados {
+    padding: 20px;
+    padding-bottom: 5%;
+    width: 100%;
+    height: 100%;
+}
+
+.title-dados {
+    display: flex;
+}
+
+.card-dados {
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.219);
+    padding: 50px;
+    border-radius: 5px;
+}
+
+.card-dados-conta {
+    display: flex;
+    height: 90%;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputs-dados {
+    text-align: start;
+    width: 50%;
+    height: 80%;
+    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.logradouro-conta {
+    width: 100%;
+}
+
+@media (max-width: 700px) {
+    .inputs-dados {
+        text-align: start;
+        width: 100%;
+        height: 100%;
+        gap: 10px;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+}

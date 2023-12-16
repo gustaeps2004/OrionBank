@@ -1,5 +1,5 @@
 import { SaldoRepository } from "../../../Data/Repositories/Saldo/SaldoRepository";
-import { Saldo } from "../../../Domain/Entities/Saldo";
+import { Saldo } from "../../../domain/entities/Saldo";
 import { ISaldoService } from "../../Interfaces/Saldo/ISaldoService";
 
 const saldoRepository = new SaldoRepository()

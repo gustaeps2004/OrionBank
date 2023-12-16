@@ -1,4 +1,4 @@
-import { Conta } from "../../../Domain/Entities/Conta";
+import { Conta } from "../../../domain/entities/Conta";
 import { ContaDto } from "../../DTOs/ContaDto";
 import { SolicitacaoAberturaContaDto } from "../../DTOs/SolicitacaoAberturaContaDto";
 

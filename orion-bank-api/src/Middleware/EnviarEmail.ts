@@ -1,9 +1,10 @@
 import nodemailer from "nodemailer"
 import SMTPTransport from "nodemailer/lib/smtp-transport";
 import dotenv from "dotenv";
+import path from "path";
 dotenv.config();
 
-function ConfigurarEmail() : nodemailer.Transporter<SMTPTransport.SentMessageInfo> {
+function ConfigurarEmail(): nodemailer.Transporter<SMTPTransport.SentMessageInfo> {
 
     const email = process.env.EMAIL;
     const senhaEmail = process.env.SENHA_EMAIL;
@@ -19,7 +20,8 @@ function ConfigurarEmail() : nodemailer.Transporter<SMTPTransport.SentMessageInf
     })
 }
 
-export async function EnviarEmail(emailConta: string, htmlEmail: string, titulo: string) : Promise<void> {
+export async function EnviarEmail(emailConta: string, htmlEmail: string, titulo: string): Promise<void> {
+    const imagePath = path.join(__dirname, "Logo/logo-orion-bank.png");
     const smtp = ConfigurarEmail()
     const email = process.env.EMAIL;
 
@@ -31,11 +33,11 @@ export async function EnviarEmail(emailConta: string, htmlEmail: string, titulo:
         attachments: [
             {
                 filename: "logo-orion-bank.png",
-                path: "src/Middleware/Logo/logo-orion-bank.png", 
-                cid: emailConta, 
+                path: imagePath,
+                cid: emailConta,
             }
         ]
     }
 
-   await smtp.sendMail(configEmail)
+    await smtp.sendMail(configEmail)
 }

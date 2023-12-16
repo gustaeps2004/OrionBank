@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
             const tokenInfo = getTokenInfo(JSON.parse(token));
 
             if (tokenInfo.exp < Date.now() / 1000) {
+                showErrorNotification("Token expirado.");
                 logout();
             } else {
                 setUser(JSON.parse(recoveredUser));
@@ -62,6 +63,7 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         localStorage.removeItem("user");
         localStorage.removeItem("token");
+        localStorage.removeItem("notificado");
         setUser(null);
         api.defaults.headers.Authorization = null;
         navigate("/login");

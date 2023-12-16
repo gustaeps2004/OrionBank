@@ -9,14 +9,14 @@ import SucessoSolicitacao from '../pages/SolicitarConta/SucessoSolicitacao';
 import RecuperarSenha from '../pages/RecuperarSenha';
 import SucessoRecuperarSenha from '../pages/RecuperarSenha/SucessoRecuperar';
 import TermosPolitica from '../pages/TermosPolitica';
-import ExtratoConta from '../pages/SidebarPages/ExtratoConta';
-import Dados from '../pages/SidebarPages/Conta/Dados';
+import ExtratoConta from '../pages/SideBar/ExtratoConta';
+import Dados from '../pages/SideBar/Conta/Dados';
 
-import SolicitacoesConta from '../pages/SidebarPages/Admin/SolicitacoesConta';
-import CadastrarChave from '../pages/SidebarPages/AreaPix/CadastrarChave';
-import Pix from '../pages/SidebarPages/AreaPix/Pix';
-import QRCode from '../pages/SidebarPages/AreaPix/QRCode';
-import Transferir from '../pages/SidebarPages/Transferencias/Transferir';
+import SolicitacoesConta from '../pages/SideBar/Admin/SolicitacoesConta';
+import CadastrarChave from '../pages/SideBar/AreaPix/CadastrarChave';
+import Pix from '../pages/SideBar/AreaPix/Pix';
+import QRCode from '../pages/SideBar/AreaPix/QRCode';
+import Transferir from '../pages/SideBar/Transferencias/Transferir';
 
 import { AuthContext } from "../contexts/AuthContext";
 import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";

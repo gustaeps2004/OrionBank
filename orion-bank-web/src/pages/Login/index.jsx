@@ -9,12 +9,13 @@ import "./styles.css";
 const Login = () => {
     const authContext = useContext(AuthContext);
     const login = authContext.login;
-
+    const [botaoDisabled, setBotaoDisabled] = useState(false);
     const [autenticarRequest, setAutenticarRequest] = useState({ login: "", senha: "" });
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setBotaoDisabled(true);
 
         autenticarRequest.login = autenticarRequest.login.replace(/\D/g, '');
 
@@ -22,10 +23,12 @@ const Login = () => {
             login(autenticarRequest);
         else
             showErrorNotification("Preencha todos os campos!");
+
+        setBotaoDisabled(false);
     };
 
     const validarPrenchimento = () => {
-        if (autenticarRequest.login !== "" && autenticarRequest.senha !== ""){
+        if (autenticarRequest.login !== "" && autenticarRequest.senha !== "") {
             return true;
         } else {
             return false;
@@ -67,7 +70,6 @@ const Login = () => {
                                                     placeholder="Senha"
                                                     name="nome"
                                                     value={autenticarRequest.senha}
-                                                    maxLength={8}
                                                     onChange={(e) => setAutenticarRequest({ ...autenticarRequest, senha: e.target.value })}
                                                 />
                                                 <div className="text-right">
@@ -76,7 +78,7 @@ const Login = () => {
                                             </div>
 
                                             <div className="buttonsLogin form-group">
-                                                <button type="submit" className="botao-um"> Login </button>
+                                                <button type="submit" disabled={botaoDisabled} className="botao-um"> Login </button>
                                                 <Link to="/solicitarConta"><button type="submit" className="botao-dois"> Solicitar Conta </button></Link>
                                             </div>
                                         </form>

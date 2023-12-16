@@ -27,14 +27,14 @@ const NavBar = ({ toggleSidebar }) => {
             {!logoVisible && (
                 <div className="navbar-logo">
                     <div className="logo-bank-header">
-                        <img src={LogoBank} alt=""></img>
+                        <Link to="/"><img src={LogoBank} alt=""></img></Link>
                     </div>
                 </div>
             )}
             {logoVisible && (
                 <div className="navbar-titulo">
                     <div className="logo-header">
-                        <img src={TituloMenor} alt=""></img>
+                        <Link to="/"><img src={TituloMenor} alt=""></img></Link>
                     </div>
                 </div>
             )}
@@ -45,7 +45,7 @@ const NavBar = ({ toggleSidebar }) => {
                 </button>
 
                 <ul className="navbar-nav navbar-nav-right buttons-sin-logout">
-                    <Sino notificacao={"Bem-vindo!"} message={"Estamos a sua disposição."} count={1}/>
+                    <Sino notificacao={"Bem-vindo!"} message={"Estamos a sua disposição."} count={1} />
                     <li className="nav-item logout-nav">
                         <Link to="/login" onClick={handleLogout}>
                             <i className="menu-icon">

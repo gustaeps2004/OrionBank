@@ -1,5 +1,5 @@
-import { ChavePix } from "../../../Domain/Entities/ChavePix";
-import { Conta } from "../../../Domain/Entities/Conta";
+import { ChavePix } from "../../../domain/entities/ChavePix";
+import { Conta } from "../../../domain/entities/Conta";
 import { IChavePixRepository } from "../../../Domain/Interfaces/ChavePix/IChavePixRepository";
 import { Situacao } from "../../../Enums/Situacao";
 import { TipoChavePix } from "../../../Enums/TipoChavePix";

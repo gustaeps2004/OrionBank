@@ -1,0 +1,162 @@
+.container-qrcode {
+    padding: 20px;
+    padding-bottom: 5%;
+    width: 100%;
+    height: 100%;
+}
+
+.card-qrcode {
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.219);
+    padding: 50px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title-qrcode {
+    display: flex;
+}
+
+.titulo-h5 {
+    color: #7a7a7a65;
+}
+
+.modal-info-qr-qode {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    align-items: center;
+    width: 100%;
+}
+
+.modal-qr-code {
+    padding: 30px;
+}
+
+.qrcode-campo {
+    width: 100%;
+}
+
+.valor-qr-code {
+    display: block;
+    border: none;
+    outline: none;
+    width: 50%;
+    height: calc(1.5em + 0.75rem + 10px);
+    padding: 0.375rem 0.75rem;
+    padding-bottom: 0rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #2f2f35;
+    background-color: #fff;
+    background-clip: padding-box;
+    border-bottom: 4px solid #DB4648;
+    border-radius: 0.35rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.qrcode-criado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.emv-qrcode {
+    width: 100%;
+}
+
+.div-descricao-qrcode {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.campo-emv-qr-code {
+    font-size: 13px;
+}
+
+.revisao-qrcode {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    border-radius: 5px;
+    padding: 30px;
+    border: 1px solid #5f5f5f56;
+}
+
+.table-criar-qr {
+    margin-bottom: 0px;
+    width: 100%;
+}
+
+.table-qr-code {
+    margin-top: 2%;
+    border: 1px solid #cacaca;
+    border-radius: 5px;
+    width: 40%;
+}
+
+.adicionar-msg {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dados-space-qr-code {
+    display: flex;
+    justify-content: space-between;
+}
+
+.background-qr img {
+    width: 100%;
+}
+
+@media (max-width: 530px) {
+    .revisao-qrcode {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border-radius: 5px;
+        padding: 30px;
+        border: 1px solid #5f5f5f56;
+    }
+
+    .modal-info-qr-qode {
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        align-items: center;
+        width: 100%;
+    }
+
+    .dados-space-qr-code {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .adicionar-msg label {
+        font-size: 10px;
+    }
+
+    .table-qr-code {
+        width: 100%;
+    }
+
+    .div-descricao h5 {
+        font-size: 13px;
+    }
+
+    .card-qrcode h2 {
+        font-size: 20px;
+    }
+}

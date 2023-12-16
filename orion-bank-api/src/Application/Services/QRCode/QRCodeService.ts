@@ -3,7 +3,7 @@ import { QRCodeDto } from "../../DTOs/QRCodeDto";
 import { IQRCodeService } from "../../Interfaces/QRCode/IQRCodeService";
 import { QRCodeContaRawQuery } from "../../../Domain/RawQuery/QRCodeContaRawQuery";
 import { createStaticPix, hasError, parsePix } from 'pix-utils';
-import { QRCode } from "../../../Domain/Entities/QRCode";
+import { QRCode } from "../../../domain/entities/QrCode";
 import { v4 as uuidv4 } from "uuid";
 
 const qrCodeRepository = new QRCodeRepository()
@@ -24,7 +24,14 @@ export class QRCodeService implements IQRCodeService {
 
         if (response !== undefined) {
             const pix = parsePix(emv);
-            response.ChavePix = pix.pixKey;
+
+            if ('pixKey' in pix) {
+                response.ChavePix = pix.pixKey;
+            }
+
+            if ('infoAdicional' in pix) {
+                response.InfoAdicional = pix.infoAdicional ?? '';
+            }
         }
 
         return response

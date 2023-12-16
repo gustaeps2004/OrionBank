@@ -58,7 +58,7 @@
 }
 
 .navbar-titulo {
-    margin-right: 80px;
+    margin-right: 90px;
     margin-left: 2%;
     transition-duration: 0.45s;
 }
@@ -69,7 +69,7 @@
 }
 
 .move-button {
-    transform: translateX(-360%);
+    transform: translateX(-290%);
     transition: transform 0.5s;
 }
 

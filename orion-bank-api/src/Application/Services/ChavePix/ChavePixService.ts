@@ -1,10 +1,10 @@
 import { ChavePixRepository } from "../../../Data/Repositories/ChavePix/ChavePixRepository";
-import { ChavePix } from "../../../Domain/Entities/ChavePix";
+import { ChavePix } from "../../../domain/entities/ChavePix";
 import { TipoChavePix } from "../../../Enums/TipoChavePix";
 import { ChavePixDto } from "../../DTOs/ChavePixDto";
 import { IChavePixService } from "../../Interfaces/ChavePix/IChavePixService";
 import { v4 as uuidv4 } from "uuid";
-import { Conta } from "../../../Domain/Entities/Conta";
+import { Conta } from "../../../domain/entities/Conta";
 
 const chavePixRepository = new ChavePixRepository()
 

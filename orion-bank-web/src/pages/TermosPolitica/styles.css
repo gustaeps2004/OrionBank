@@ -1,8 +1,9 @@
 .container-texto-termos {
-    height: 500px;
+    height: 100%;
     width: 500px;
     margin-left: 3%;
     margin-top: 10%;
+    margin-bottom: 50px;
 }
 
 .termos-texto {
@@ -11,11 +12,11 @@
 
 @media (max-width: 574px) {
     .container-texto-termos {
-        font-size: 13px;
-        height: 130%;
+        font-size: 10px;
+        height: 100%;
         width: 100%;
         margin-left: 3%;
         margin-top: 10%;
-        margin-bottom: 10%;
+        margin-bottom: 50px;
     }
   }

@@ -1,0 +1,94 @@
+.linha-superior {
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: space-between;
+}
+
+.linha-superior input[type="date"] {
+    margin-right: 10px;
+}
+
+.estilo-botao {
+    background-color: #DB4648;
+    border: none;
+}
+
+.card-extrato {
+    background-color: #DB4648;
+    color: white;
+    padding: 5px;
+    font-size: 15px;
+    border-radius: 0.25rem;
+}
+
+.card-extrato p {
+    margin: 0px;
+}
+
+.table-solicitar1 {
+    height: 100%;
+    border: 1px solid #cacaca;
+    border-radius: 5px;
+}
+
+.card-solicitar1 {
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.219);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.div-saldo-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-data {
+    display: flex;
+    width: 100%;
+    align-content: center;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-btn {
+    display: flex;
+    justify-content: center;
+}
+
+input[type="date"] {
+    background-color: #d46f70;
+    padding: 8px;
+    color: #ffffff;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+::-webkit-calendar-picker-indicator {
+    background-color: #ffffff;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+
+@media (max-width: 546px) {
+    .linha-superior {
+        flex-direction: column;
+    }
+
+    .card-extrato {
+        margin-bottom: 7px;
+    }
+}
+
+@media (max-width: 661px) {
+    .fs {
+        font-size: 10px;
+    }
+}

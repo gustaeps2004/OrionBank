@@ -1,5 +1,5 @@
 import { AbrirContaRepository } from "../../../Data/Repositories/CriarConta/AbrirContaRepository";
-import { Conta } from "../../../Domain/Entities/Conta";
+import { Conta } from "../../../domain/entities/Conta";
 import { ContaDto } from "../../DTOs/ContaDto";
 import { SolicitacaoAberturaContaDto } from "../../DTOs/SolicitacaoAberturaContaDto";
 import { IAbrirContaService } from "../../Interfaces/CriarConta/IAbrirContaService";
@@ -71,7 +71,7 @@ export class AbrirContaService implements IAbrirContaService {
 
         const abrirContaRepository = new AbrirContaRepository()
         const conta = await abrirContaRepository.BuscarContaPorDocumentoFederal(documentoFederal.replace(/[^0-9]/g, ""))
-
+        
         if(!conta) {
             return false;
         }
@@ -79,22 +79,13 @@ export class AbrirContaService implements IAbrirContaService {
         const token = th.CriarTokenJWT(conta)
 
         const htmlRecuperacao = `<h3>
-                                    <strong>TENTATIVA DE ALTERAÇÃO DE SENHA!!!</strong>
+                                    Prezado(a) ${conta.NomeCompleto}, 
                                 </h3>
-                                <br/>
-
                                 <p>
-                                    Caso não tenha sido você que solicitou a alteração de senha, apenas ignore este email.
+                                    Realize <a href="${process.env.URL_CRIAR_SENHA}/recuperar?codigo=${token.Codigo}&token=${token.Token}">aqui</a> a alteração da sua senha.
                                 </p>
-                                <p>
-                                    Caso tenha sido você que solitou a troca de senha, clique no link abaixo!
-                                </p>
-
-                                <a href="${process.env.URL_CRIAR_SENHA}/recuperar?codigo=${token.Codigo}&token=${token.Token}">Clique aqui!</a>
-
                                 <br/>
                                 <br/>
-
                                 <img 
                                     src="cid:${conta.Email}"
                                     alt="Imagem logo orion bank"
@@ -124,25 +115,28 @@ export class AbrirContaService implements IAbrirContaService {
         const senha = th.GerarNumeroAleatorio(8)
         const codigo = uuidv4()
         
-        conta.Agencia = "0001"
-        conta.Conta = th.GerarNumeroAleatorio(8)
-        conta.ContaDigito = "8"
+        conta.Agencia = "0001";
+        conta.Conta = th.GerarNumeroAleatorio(8);
+        conta.ContaDigito = "8";
         conta.ContaPgto = `${conta.Conta}${conta.ContaDigito}` 
         conta.Senha = senha;
-        conta.Codigo = codigo
+        conta.Codigo = codigo;
+        conta.DtNasc = th.FormatarData(conta.DtNasc);
 
         await abrirContaRepository.EfetuarAberturaDeConta(conta, codigoSolicitacao);
 
         const token = th.CriarTokenJWT(conta)
 
         const htmlAprovacao =  `<h3>
-                                    <strong>PARABÉNS ${conta.NomeCompleto}</strong>,
-                                    sua conta foi aprovada!
+                                    Prezado(a) ${conta.NomeCompleto},
                                 </h3>
                                 <p>
-                                    Para dar continuidade com sua conta, peço que acesse o link abaixo para criar uma senha de acesso!
+                                    Avaliamos seus dados e não encontramos nenhuma inconsistência.
                                 </p>
-                                <a href="${process.env.URL_CRIAR_SENHA}/recuperar?codigo=${token.Codigo}&token=${token.Token}">Clique aqui!</a>  
+                                <p>
+                                    Finalize sua solicitação acessando o link
+                                    <a href="${process.env.URL_CRIAR_SENHA}/recuperar?codigo=${token.Codigo}&token=${token.Token}">aqui</a>.
+                                </p>  
                                 <br/>
                                 <br/>
                                 <img 
@@ -183,10 +177,10 @@ export class AbrirContaService implements IAbrirContaService {
         const contaJson = JSON.parse(conta.MensagemSolicitacao) as Conta
 
         const htmlReprovacao = `<h3>
-                                    <strong>Pedimos desculpa senhor/a ${contaJson.NomeCompleto}</strong>,
+                                    Prezado(a) ${contaJson.NomeCompleto}
                                 </h3>
                                 <P>
-                                    mas infelizmente nosso time de analistas, achou alguma inconsistência em seus dados!
+                                    Avaliamos seus dados e encontramos inconsistências. Infelizmente não foi possível prosseguir com a criação de sua conta.
                                 </P>
                                 <br/>
                                 <br/>
@@ -386,6 +380,14 @@ export class AbrirContaService implements IAbrirContaService {
         } as AutenticacaoTokenDto
 
         return autenticador;
+
+    }
+
+    private FormatarData(data: any) : Date {
+
+        const teste = data.toString().split("/")
+
+        return new Date(`${teste[2]}-${teste[1]}-${teste[0]}`);
 
     }
 

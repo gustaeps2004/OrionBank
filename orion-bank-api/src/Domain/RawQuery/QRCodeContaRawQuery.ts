@@ -7,4 +7,5 @@ export interface QRCodeContaRawQuery {
     NomeCompleto: string
     ChavePix: string
     CodigoConta: string
+    InfoAdicional: string
 }

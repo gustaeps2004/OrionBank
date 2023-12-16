@@ -50,13 +50,15 @@ const SolicitarConta = () => {
     const buscarCEPDigitado = async () => {
         const response = await buscarCep(cepInput.replace(/\D/g, ''));
 
-        setSolicitacaoRequest({
-            ...solicitacaoRequest,
-            cep: cepInput,
-            logradouro: response?.logradouro ?? "",
-            estado: response?.uf ?? "",
-            cidade: response?.localidade ?? "",
-        });
+        if (response.localidade !== '') {
+            setSolicitacaoRequest({
+                ...solicitacaoRequest,
+                cep: cepInput,
+                logradouro: response?.logradouro ?? "",
+                estado: response?.uf ?? "",
+                cidade: response?.localidade ?? "",
+            });
+        }
     }
 
     useEffect(() => {
@@ -89,7 +91,7 @@ const SolicitarConta = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         validarPrenchimento();
         const todosPreenchidos = camposChecagem.every(fieldName => Boolean(solicitacaoRequest[fieldName]));
 
@@ -296,7 +298,7 @@ const SolicitarConta = () => {
                                                                 className="numero form-control"
                                                                 id="numero"
                                                                 aria-describedby="numeroHelp"
-                                                                placeholder="Numero"
+                                                                placeholder="Número"
                                                                 maxLength={10}
                                                                 value={solicitacaoRequest.numero}
                                                                 onChange={(e) => setSolicitacaoRequest({ ...solicitacaoRequest, numero: e.target.value })}

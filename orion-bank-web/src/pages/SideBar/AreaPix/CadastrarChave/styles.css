@@ -1,0 +1,145 @@
+.container-cadastrar {
+    padding: 20px;
+    padding-bottom: 5%;
+    width: 100%;
+    height: 100%;
+}
+
+.card-cadastrar {
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.219);
+    padding: 50px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title-solicitar {
+    display: flex;
+}
+
+.modal-content {
+    width: 110%;
+}
+
+.modal-cadastro {
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+}
+
+.modal-pix {
+    padding: 30px;
+}
+
+.titulo-chaves {
+    color: #414141b6;
+    font-size: 15px;
+}
+
+.div-descricao {
+    width: 40%;
+}
+
+.btn.btn-secondary.button-add-chave {
+    background: #DB4648;
+    border-color: #DB4648;
+    margin-top: 3%;
+}
+
+
+.table-consulta-chave {
+    margin-top: 2%;
+    border: 1px solid #cacaca;
+    border-radius: 5px;
+    width: 40%;
+}
+
+.tipo-chave {
+    text-align: start;
+    cursor: pointer;
+}
+
+.valor-chave {
+    color: #7a7a7af8;
+    text-align: start;
+    cursor: pointer;
+}
+
+.table.table-cadastra-chave {
+    margin-bottom: 0px;
+    width: 100%;
+}
+
+.campo-cadastro {
+    width: 45%;
+    margin-right: 20px;
+}
+
+.campo-chave {
+    width: 520px;
+    margin-right: 20px;
+}
+
+.msg-sem-chaves {
+    color: #0000009c;
+}
+
+.trash-pix {
+    width: 30px;
+}
+
+.img-excluir-chave {
+    cursor: pointer
+}
+
+.img-excluir-chave:hover {
+    transform: scale(1.2);
+    transition: 0.2s;
+    fill: #DB4648;
+}
+
+.button-cadastrar-chave {
+    width: 200px;
+}
+
+.button-criar {
+    width: 100px;
+}
+
+.background-chaves img{
+    width: 100%;
+}
+
+@media (max-width: 700px) {
+    .div-descricao {
+        width: 90%;
+    }
+
+    .modal-cadastro {
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+    }
+
+    .campo-chave {
+        width: 100%;
+        margin-right: 20px;
+    }
+
+    .campo-cadastro {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .table-consulta-chave {
+        width: 100%;
+    }
+
+    .minhas-chaves h2{
+        font-size: 20px;
+    }
+}

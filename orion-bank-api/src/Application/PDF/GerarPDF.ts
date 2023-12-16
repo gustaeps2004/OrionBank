@@ -1,26 +1,13 @@
-import puppeteer from "puppeteer"
 import { ExtratoRepository } from "../../Data/Repositories/Extrato/ExtratoRepository";
 import { TipoTransacao } from "../../Enums/TipoTransacao";
 import { ValidarDataInicioMenor } from "../../Middleware/ValidarData";
 
 const _extratoRepository = new ExtratoRepository()
 
-export async function GerarPDF(codigoConta: string, dataInicio: Date, dataFim: Date) {
-    ValidarDataInicioMenor(dataInicio, dataFim)
+export async function GerarPDF(codigoConta: string, dataInicio: Date, dataFim: Date): Promise<string> {
+    ValidarDataInicioMenor(dataInicio, dataFim);
 
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-
-    await page.setContent(await PegarHTML(codigoConta, dataInicio, dataFim));
-
-    const arquivo = await page.pdf({
-        path: 'exported_file.pdf',
-        format: 'A4',
-        landscape: false,
-    });
-
-    await browser.close();
-    return arquivo.toString('base64');
+    return await PegarHTML(codigoConta, dataInicio, dataFim);
 }
 
 async function PegarHTML(codigoConta: string, dataInicio: Date, dataFim: Date): Promise<string> {
@@ -260,7 +247,7 @@ function MontarHTMLValores(data: Date, tipoTransacao: string, descricao: string,
     return `            
         <div style="
             width: 80px;
-            padding: 5px;
+            padding: 1px;
             margin: 10px;
             display: flex;
             align-items: center;
@@ -271,7 +258,7 @@ function MontarHTMLValores(data: Date, tipoTransacao: string, descricao: string,
 
         <div style="
             width: 25px;
-            padding: 5px;
+            padding: 1px;
             margin: 10px;
             display: flex;
             align-items: center;
@@ -282,7 +269,7 @@ function MontarHTMLValores(data: Date, tipoTransacao: string, descricao: string,
 
         <div style="
             width: 140px;
-            padding: 5px;
+            padding: 1px;
             margin: 10px;
             display: flex;
             align-items: center;
@@ -293,18 +280,18 @@ function MontarHTMLValores(data: Date, tipoTransacao: string, descricao: string,
 
         <div style="
             width: 140px;
-            padding: 5px;
+            padding: 1px;
             margin: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
         ">
-            ${descricao}
+            ${descricao.substring(0, 30)}
         </div>
 
         <div style="
             width: 100px;
-            padding: 5px;
+            padding: 1px;
             margin: 10px;
             display: flex;
             align-items: center;

@@ -1,17 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Bell from "../../assets/img/sino.svg";
 import { Link } from "react-router-dom";
 import '@popperjs/core';
 import './styles.css';
 
 const Sino = ({ notificacao, message, count }) => {
+    const [isNotificado, setIsNotificado] = useState(false);
+
+    const sinoVisualizado = () => {
+        setIsNotificado(true);
+        localStorage.setItem("notificado", true);
+    };
+
+    useEffect(() => {
+        const localNotificado = localStorage.getItem("notificado");
+        setIsNotificado(localNotificado);
+    }, []);
+
     return (
-        <li className="nav-item">
+        <li className="nav-item sino" onClick={sinoVisualizado}>
             <Link className="nav-link count-indicator" id="notificationDropdown" data-toggle="dropdown">
                 <i>
                     <img src={Bell} alt="" />
                 </i>
-                <span className="badge rounded-pill badge-notification bg-danger custom-notfication">{count}</span>
+                {!isNotificado && (
+                    <span className="badge rounded-pill badge-notification bg-danger custom-notfication">{count}</span>
+                )}
             </Link>
             <div className="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
                 <p className="mb-0 font-weight-normal float-left dropdown-header">Notificações</p>

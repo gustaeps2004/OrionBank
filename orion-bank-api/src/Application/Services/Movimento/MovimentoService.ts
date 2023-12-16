@@ -1,4 +1,4 @@
-import { Movimento } from "../../../Domain/Entities/Movimento";
+import { Movimento } from "../../../Domain/entities/Movimento";
 import { MovimentoPixDto } from "../../DTOs/MovimentoDto";
 import { MovimentoEMVDto } from "../../DTOs/MovimentoEMVDto";
 import { IMovimentoService } from "../../Interfaces/Movimento/IMovimentoService";
@@ -68,7 +68,26 @@ export class MovimentoService implements IMovimentoService {
             throw new Error("Erro interno.")
         }
 
-        return await movimentoRepository.ObterUltimasTransacoes(codigoConta);
+        const movi = await movimentoRepository.ObterUltimasTransacoes(codigoConta);
+        let movimentos: Array<Movimento> = [];
+
+        for (let cont = 0; cont < movi.length; cont++) {
+            movimentos.push({
+                ID: movi[cont].ID,
+                Codigo: movi[cont].Codigo,
+                CodigoContaOrigem: movi[cont].CodigoContaOrigem,
+                CodigoContaDestino: movi[cont].CodigoContaDestino,
+                Valor: movi[cont].Valor,
+                Chave_Pix: movi[cont].Chave_Pix,
+                EMV: movi[cont].EMV,
+                InfoAdicional: movi[cont].InfoAdicional,
+                DescTransacao: movi[cont].DescTransacao,
+                TipoTransacao: movi[cont].TipoTransacao,
+                DtMovimento: this.SomarData(movi[cont].DtMovimento)
+            })
+        }
+
+        return movimentos;
     }
     
     async RealizarTransacaoPorDadosBancarios(movimento: MovimentoDadosBancariosDto): Promise<void> {
@@ -204,7 +223,7 @@ export class MovimentoService implements IMovimentoService {
             InfoAdicional: moviDto.infoAdicional,
             DescTransacao: moviDto.descTransacao,
             TipoTransacao: moviDto.tipoTransacao,
-            DtMovimento: new Date()
+            DtMovimento: this.SubtrairData(new Date())
         } as Movimento
     }
 
@@ -218,7 +237,7 @@ export class MovimentoService implements IMovimentoService {
             InfoAdicional: moviDto.infoAdicional,
             DescTransacao: moviDto.descTransacao,
             TipoTransacao: moviDto.tipoTransacao,
-            DtMovimento: new Date()
+            DtMovimento: this.SubtrairData(new Date())
         } as Movimento
     }
 
@@ -230,11 +249,18 @@ export class MovimentoService implements IMovimentoService {
             CodigoContaDestino: moviDto.codigoContaDestino,
             InfoAdicional: moviDto.descricao,
             TipoTransacao: TipoTransacao.Transferencia,
-            DtMovimento: new Date(),
+            DtMovimento: this.SubtrairData(new Date()),
             Valor: moviDto.valor,
             DescTransacao: TipoTransacao.TransferenciaString
         } as unknown as Movimento
 
     }
 
+    private SubtrairData(data: Date) : Date {
+        return new Date(data.setHours(data.getHours() - 3));
+    }
+
+    private SomarData(data: Date) : Date {
+        return new Date(data.setHours(data.getHours() + 3));
+    }
 }

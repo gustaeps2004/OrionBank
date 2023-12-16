@@ -1,4 +1,4 @@
-import { Saldo } from "../../../Domain/Entities/Saldo";
+import { Saldo } from "../../../domain/entities/Saldo";
 
 
 export interface ISaldoService {

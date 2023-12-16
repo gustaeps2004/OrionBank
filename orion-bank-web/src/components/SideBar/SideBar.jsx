@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from "react-router-dom";
 import '@popperjs/core';
 import './styles.css';
@@ -7,6 +7,7 @@ import './bootstrap/style.css';
 const SideBar = ({ isOpen, sidebarData }) => {
     const location = useLocation();
     const [activeItem, setActiveItem] = useState(null);
+    const sidebarRef = useRef(null);
 
     const toggleItem = (title) => {
         if (activeItem === title) {
@@ -16,8 +17,22 @@ const SideBar = ({ isOpen, sidebarData }) => {
         }
     };
 
+    const handleOutsideClick = (event) => {
+        if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+            setActiveItem(null);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('click', handleOutsideClick);
+
+        return () => {
+            document.removeEventListener('click', handleOutsideClick);
+        };
+    }, [isOpen]);
+
     return (
-        <nav id="sidebar" className={`custom ${isOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
+        <nav id="sidebar" ref={sidebarRef} className={`custom ${isOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
             <ul className="list-unstyled components custom-ul">
                 <div className='top-content'>
                     {sidebarData.map((item, index) => (

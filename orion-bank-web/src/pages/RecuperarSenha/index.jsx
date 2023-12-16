@@ -17,11 +17,13 @@ const RecuperarSenha = () => {
     const [senhaRepetida, setSenhaRepetida] = useState("");
     const [isAlteracao, setIsAlteracao] = useState(false);
     const [senhaDiferente, setSenhaDiferente] = useState(false);
+    const [botaoDisabled, setBotaoDisabled] = useState(false);
 
     //#region Chamadas
 
     const enviarEmailSenha = async (e) => {
         e.preventDefault();
+        setBotaoDisabled(true);
 
         if (documento === undefined || documento.replace(/\D/g, '').length < 11) {
             showErrorNotification("Preencha um documento válido.");
@@ -29,11 +31,12 @@ const RecuperarSenha = () => {
         }
 
         await enviarEmailRecuperacao(documento.replace(/\D/g, ''));
+        setBotaoDisabled(false);
     };
 
     const alterarSenha = async (e) => {
         e.preventDefault();
-        
+        setBotaoDisabled(true);
         if (!validarCampos()){
             return;
         }
@@ -45,6 +48,7 @@ const RecuperarSenha = () => {
         }
 
         await recuperarSenha(request);
+        setBotaoDisabled(false);
     };
 
     //#endregion
@@ -85,8 +89,8 @@ const RecuperarSenha = () => {
             return false;
         }
 
-        if (senha.length !== 8){
-            showErrorNotification(`A senha não contém 8 digitos.`);
+        if (senha.length < 8){
+            showErrorNotification(`A senha precisa ter no mínimo 8 digitos.`);
             return false;
         }
 
@@ -133,7 +137,7 @@ const RecuperarSenha = () => {
                                                     </div>
 
                                                     <div className="form-group">
-                                                        <button type="submit" className="botao-um"> Recuperar </button>
+                                                        <button type="submit" disabled={botaoDisabled} className="botao-um"> Recuperar </button>
                                                         <Link to="/login"><button type="button" className="botao-dois"> Cancelar </button></Link>
                                                     </div>
                                                 </form>
@@ -147,7 +151,7 @@ const RecuperarSenha = () => {
                                                         <label>
                                                             A senha deve conter:
                                                             <ul>
-                                                                <li>8 dígitos;</li>
+                                                                <li>No mínimo 8 dígitos;</li>
                                                                 <li>Pelo menos um caractere especial;</li>
                                                                 <li>Pelo menos uma letra maiúscula;</li>
                                                                 <li>Pelo menos uma letra minúscula;</li>
@@ -166,7 +170,7 @@ const RecuperarSenha = () => {
                                                                 id="senha"
                                                                 aria-describedby="senhaHelp"
                                                                 placeholder="Senha"
-                                                                maxLength={8}
+                                                                maxLength={25}
                                                                 value={senha}
                                                                 onChange={(e) => setSenha(e.target.value)}
                                                             />
@@ -179,7 +183,7 @@ const RecuperarSenha = () => {
                                                                 id="senha-repetida"
                                                                 aria-describedby="senhaHelp"
                                                                 placeholder="Repetir Senha"
-                                                                maxLength={8}
+                                                                maxLength={25}
                                                                 value={senhaRepetida}
                                                                 onChange={(e) => verificarRepeticao(e.target.value)}
                                                             />
@@ -192,7 +196,7 @@ const RecuperarSenha = () => {
                                                     </div>
 
                                                     <div className="form-group">
-                                                        <button type="submit" className="botao-um"> Recuperar </button>
+                                                        <button type="submit" disabled={botaoDisabled} className="botao-um"> Recuperar </button>
                                                         <Link to="/login"><button type="button" className="botao-dois"> Cancelar </button></Link>
                                                     </div>
                                                 </form>

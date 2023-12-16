@@ -1,6 +1,6 @@
 import { MovimentoPixDto } from "../../DTOs/MovimentoDto";
 import { MovimentoEMVDto } from "../../DTOs/MovimentoEMVDto";
-import { Movimento } from "../../../Domain/Entities/Movimento";
+import { Movimento } from "../../../domain/entities/Movimento";
 import { MovimentoDadosBancariosDto } from "../../DTOs/MovimentoDadosBancariosDto";
 
 export interface IMovimentoService {

@@ -1,4 +1,4 @@
-import { Movimento } from "../../../Domain/Entities/Movimento";
+import { Movimento } from "../../../domain/entities/Movimento";
 import { IMovimentoRepository } from "../../../Domain/Interfaces/Movimento/IMovimentoRepository";
 import { connection } from "../../context/ConnectionString";
 

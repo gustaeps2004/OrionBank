@@ -1,7 +1,7 @@
 import { ISaldoRepository } from "../../../Domain/Interfaces/Saldo/ISaldoRepository";
 import { v4 as uuidv4 } from 'uuid';
 import { connection } from "../../context/ConnectionString";
-import { Saldo } from "../../../Domain/Entities/Saldo";
+import { Saldo } from "../../../domain/entities/Saldo";
 
 export class SaldoRepository implements ISaldoRepository {
 
@@ -11,7 +11,7 @@ export class SaldoRepository implements ISaldoRepository {
             uuidv4(),
             codigoConta,
             new Date(),
-            1000000
+            1000
         ]
 
         const sqlSaldo = `INSERT INTO

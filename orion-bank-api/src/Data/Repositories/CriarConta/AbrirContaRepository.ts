@@ -1,9 +1,9 @@
-import { Conta } from "../../../Domain/Entities/Conta";
+import { Conta } from "../../../domain/entities/Conta";
 import { IAbrirContaRepository } from "../../../Domain/Interfaces/AbrirConta/IAbrirContaRepository";
 import { connection } from "../../context/ConnectionString";
 import { v4 as uuidv4 } from 'uuid';
 import { SolicitacaoAberturaDeConta } from '../../../Enums/SituacaoSolicitacaoConta'
-import { SolicitacaoAberturaConta } from "../../../Domain/Entities/SolicitacaoAberturaConta";
+import { SolicitacaoAberturaConta } from "../../../domain/entities/SolicitacaoAberturaConta";
 import { TipoConta } from "../../../Enums/TipoConta";
 
 export class AbrirContaRepository implements IAbrirContaRepository{

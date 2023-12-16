@@ -1,4 +1,4 @@
-import { Conta } from '../../Domain/Entities/Conta';
+import { Conta } from '../../domain/entities/Conta';
 import { AutenticacaoDto, AutenticacaoTokenDto } from '../DTOs/AutenticacaoDto';
 import { IAutenticacaoService } from '../Interfaces/IAutenticacaoService'
 import { AutenticacaoRepository } from '../../Data/Repositories/AutenticacaoRepository';
